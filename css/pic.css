@@ -1,0 +1,118 @@
+  /*使用通配符将内外边距都设置为零, 这样看着好看*/
+    * {
+      margin: 0px;
+      padding: 0px;
+    }
+
+    /*ImageBox*/
+
+    .image-box-plugin {
+      position: fixed;
+      top: 0;
+      left: 0;
+      text-align: center;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(253, 246, 243, 0.9);
+      z-index: 999;
+      display: none;
+
+    }
+
+    .image-box-plugin img {
+      min-width: 20%;
+      max-width: 100%;
+      max-height: 100%;
+      cursor: -webkit-zoom-out;
+      cursor: -moz-zoom-out;
+      cursor: zoom-out;
+    }
+
+    .image-box-plugin .image-box-container {
+      position: absolute;
+      top: 50%;
+      -webkit-transform: translate3D(0, -50%, 0);
+      transform: translate3D(0, -50%, 0);
+      width: 100%;
+      height: 100%;
+      text-align: center;
+      display: -moz-box;
+      -moz-box-align: center;
+      -moz-box-pack: center;
+      display: -webkit-box;
+      -webkit-box-align: center;
+      -webkit-box-pack: center;
+      display: -o-box;
+      -o-box-align: center;
+      -o-box-pack: center;
+      display: -ms-box;
+      -ms-box-align: center;
+      -ms-box-pack: center;
+      box-align: center;
+      box-pack: center;
+    }
+
+    /*将主容器的布局方式设置为相对布局，一下方式可设置container为水平居中，详见：http://www.zhangxinxu.com/wordpress/2013/11/margin-auto-absolute-%E7%BB%9D%E5%AF%B9%E5%AE%9A%E4%BD%8D-%E6%B0%B4%E5%B9%B3%E5%9E%82%E7%9B%B4%E5%B1%85%E4%B8%AD/*/
+    #container {
+      position: relative;
+      left: 0;
+      right: 0;
+      top: 0;
+      bottom: 0;
+      margin: auto;
+    }
+    
+    
+
+    /*定制box尺寸*/
+    .box {
+      padding: 1px;    /*7*/
+      float: left;
+      box-sizing: border-box;
+      width: 170px;/*300*/ 
+      /* 图片尺寸+wrapper内边距+box内边距 */
+    }
+
+    /*将承载图片的容器定制颜色及边框大小和圆角*/
+    .wrapper {
+      padding: 5px;
+    }
+
+    .pic {
+      font-size: 0;
+      /*消除行内元素的间隙*/
+    }
+
+    .pic img {
+      border-radius: 5px;
+      width: 100%;
+      height: auto;
+      box-shadow: 0 2px 15px 1px rgba(0, 0, 0, .03);
+      transition: all .6s;
+    }
+
+    .pic img:hover {
+      transform: scale(1.03);
+      -webkit-animation-timing-function: ease-in-out;
+      animation-timing-function: ease-in-out;
+      -webkit-animation-name: breathe;
+      animation-name: breathe;
+      -webkit-animation-duration: 2700ms;
+      animation-duration: 2700ms;
+      -webkit-animation-iteration-count: infinite;
+      animation-iteration-count: infinite;
+      -webkit-animation-direction: alternate;
+      animation-direction: alternate;
+    }
+
+    @keyframes breathe {
+      0% {
+        border: 1px solid rgba(153, 196, 251, 0.8);
+        box-shadow: 0 1px 5px rgba(133, 213, 245, 0.8);
+      }
+
+      100% {
+        border: 1px solid rgba(153, 196, 251, 0.8);
+        box-shadow: 0 1px 25px rgba(133, 213, 245, 0.8);
+      }
+    }

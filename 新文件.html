@@ -1,0 +1,95 @@
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+  }
+  .background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    opacity: 1;
+    animation: hideBackgroundImage 2s forwards;
+  }
+
+  @keyframes hideBackgroundImage {
+    0% {
+      opacity: 1;
+    }
+    100% {
+      opacity: 0;
+    }
+  }
+
+  .spinner {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 50px;
+    height: 50px;
+    border: 5px solid #f3f3f3;
+    border-top: 5px solid #3498db;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  @keyframes spin {
+    0% {
+      transform: translate(-50%, -50%) rotate(0deg);
+    }
+    100% {
+      transform: translate(-50%, -50%) rotate(360deg);
+    }
+  }
+
+  .loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100vh;
+  }
+
+  .show {
+    opacity: 1;
+    visibility: visible;
+  }
+</style>
+
+<div class="loading">
+  <div class="spinner"></div>
+</div>
+
+<img id="backgroundImg" src="your-background-image.jpg" alt="Background Image" class="background-image">
+
+<script>
+  var backgroundImg = document.getElementById("backgroundImg");
+  var spinner = document.querySelector(".spinner");
+  var loading = document.querySelector(".loading");
+
+  // 隐藏背景图片和转圈圈动画
+  function hideBackgroundImageAndSpinner() {
+    backgroundImg.classList.add("hide");
+    spinner.classList.remove("show");
+    loading.classList.remove("show");
+  }
+
+  // 显示背景图片和转圈圈动画
+  function showBackgroundImageAndSpinner() {
+    backgroundImg.classList.remove("hide");
+    spinner.classList.add("show");
+    loading.classList.add("show");
+  }
+
+  // 调用函数来隐藏或显示背景图片和转圈圈动画
+  hideBackgroundImageAndSpinner(); // 默认先隐藏
+
+  // 在需要显示背景图片和转圈圈动画的地方调用showBackgroundImageAndSpinner()函数
+  // 在不需要显示背景图片和转圈圈动画的地方调用hideBackgroundImageAndSpinner()函数
+</script>
