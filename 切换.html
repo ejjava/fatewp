@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <me name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<head>
+  <meta charset="UTF-8">
+  <title>示例网页</title>
+ 
+</head>
+
+<body>
+  <div id="pic"></div>
+  <button onclick="showCard()">切换</button>
+
+  <div id="card1" class="card">
+    <h2>选项一</h2>
+    <p>这是选项一的内容。</p>
+  </div>
+
+  <div id="card2" class="card">
+    <h2>选项二</h2>
+    <p>这是选项二的内容。</p>
+  </div>
+
+  <div id="card3" class="card">
+    <h2>选项三</h2>
+    <p>这是选项三的内容。</p>
+  </div>
+  
+  <script>
+    // 判断上次保存的页面并加载对应的卡片
+    var lastPage = localStorage.getItem("lastPage");
+    var picDiv = document.getElementById("pic");
+
+    if (lastPage === "2.html") {
+      picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
+    } else if (lastPage === "3.html") {
+      picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
+    } else {
+      picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
+    }
+// 切换按钮点击事件
+function showCard() {
+  var card1 = document.getElementById("card1");
+  var card2 = document.getElementById("card2");
+  var card3 = document.getElementById("card3");
+
+  if (card1.style.display === "block") {
+    // 如果选项一已显示，则隐藏选项一并显示选项二
+    card1.style.display = "none";
+    card2.style.display = "block";
+    card3.style.display = "none";
+
+    picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
+    localStorage.setItem("lastPage", "2.html");
+  } else if (card2.style.display === "block") {
+    // 如果选项二已显示，则隐藏选项二并显示选项三
+    card1.style.display = "none";
+    card2.style.display = "none";
+    card3.style.display = "block";
+
+    picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
+    localStorage.setItem("lastPage", "3.html");
+  } else {
+    // 默认情况下显示选项一
+    card1.style.display = "block";
+    card2.style.display = "none";
+    card3.style.display = "none";
+
+    picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
+    localStorage.setItem("lastPage", "1.html");
+  }
+}
+  </script>
+  
+</body>
+
+</html>

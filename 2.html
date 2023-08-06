@@ -1,0 +1,240 @@
+<!doctype html>
+<html lang="zh-CN">
+
+<head>
+    <!-- 必须的 meta 标签 -->
+    <meta charset="utf-8">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <me name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <!-- Bootstrap 的 CSS 文件 -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+        <title>FATE WP:一款随机壁纸网站</title>
+        <meta name="keywords" content=图片,二次元,FATE WP,自制网站,壁纸,随机壁纸,随机图片>
+        <meta name="description" content="DZY's Blog:随心所欲的分享！">
+        <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
+        <link rel="stylesheet" href="./css/loading.css">
+        <link rel="stylesheet" href="./css/pic.css">
+
+        <style>
+            body {
+                margin: 0;
+                padding: 0;
+            }
+
+            #update-notification {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                background-color: #ffffff;
+                color: #333333;
+                padding: 15px;
+                border-radius: 10px;
+                font-size: 20px;
+                opacity: 0;
+                transition: transform 0.3s ease, opacity 0.3s ease;
+                transform: translateX(100%);
+                z-index: 9999;
+            }
+
+            @media only screen and (max-width: 600px) {
+                #update-notification {
+                    font-size: 16px;
+                }
+            }
+        </style>
+
+</head>
+
+<body class="loading">
+
+
+
+
+  <br><br><br>
+
+
+    <section class="m-1">
+        <div id="container">
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+          
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+
+            <div class="box">
+                <div class="wrapper">
+                    <div class="pic">
+                        <img class="random-image" id="random-image" alt="随机图片">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </section>
+
+
+
+    <div id="update-notification" class="mdui-card mdui-shadow-5">
+        <div class="mdui-card-content">
+            <h6>接口:Jitsuの随机涩图API</h6>
+        </div>
+    </div>
+
+    <script>
+        window.addEventListener('load', function() {
+            var updateNotification = document.getElementById('update-notification');
+
+            // 模拟每次启动都有更新
+            var hasUpdate = true;
+
+            if (hasUpdate) {
+                updateNotification.style.transform = 'translateX(0)';
+                updateNotification.style.opacity = '1';
+                setTimeout(function() {
+                    updateNotification.style.transform = 'translateX(100%)';
+                    updateNotification.style.opacity = '0';
+                }, 3000); // 过3秒后自动隐藏
+            }
+
+
+
+        });
+    </script>
+    <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+
+    <!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script>
+    <script src="./js/pic.js"></script>
+    <script src="./js/loading.js"></script>
+    <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
+
+</body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+      var imgElements = document.querySelectorAll(".random-image");
+      var apiUrl = "https://api.anosu.top/img";
+
+      for (var i = 0; i < imgElements.length; i++) {
+        var randomUrl = apiUrl + "?random=" + Math.random();
+        imgElements[i].setAttribute("src", randomUrl);
+      }
+    });
+  </script>
+</html>
