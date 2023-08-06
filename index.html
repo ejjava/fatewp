@@ -1,79 +1,29 @@
 <!doctype html>
 <html lang="zh-CN">
-
-<head>
-    <!-- 必须的 meta 标签 -->
-    <meta charset="utf-8">
-    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-    <me name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-
-        <!-- Bootstrap 的 CSS 文件 -->
-        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
+<head    
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">     
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> <!-- Bootstrap 的 CSS 文件 -->
         <title>FATE WP:一款随机壁纸网站</title>
         <meta name="keywords" content=图片,二次元,FATE WP,自制网站,壁纸,随机壁纸,随机图片>
         <meta name="description" content="DZY's Blog:随心所欲的分享！">
-        <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
-        <link rel="stylesheet" href="./css/loading.css">
-    
-       
- 
-   <style>
-    .card-container {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
-    }
-    
-    .card {
-      width: 300px;
-      height: 200px;
-      border-radius: 10px;
-      background-color: #f1f1f1;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      display: none;
-    }
-  
-     
-  </style>
- <style>
- 
-#pic {
-  width: 100vw;
-  height: 100vh;
-  background-color: lightgray;
-  margin-bottom: 20px;
-}
-
-    .card {
-      width: 98%%;
-      height: 200px;
-      margin: auto;
-      background-color: white;
-      border-radius: 10px;
-      display: none;
-      padding: 20px;
-    }
-  </style>
+        <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> <!-- MDUI -->
+        <link rel="stylesheet" href="./css/loading.css"> <!-- 圈 -->
+        <link rel="stylesheet" href="./css/odinary.css"> <!-- 加载 -->    
 </head>
 
-<body class="loading">
+<body class="loading padding-top">
     <div id="loading-spinner">
         <p class="additional-text">FATE WP</p> <!-- 在转圈圈上方添加的额外文本 -->
         <div class="spinner不用这个"></div>
         <div class="mdui-spinner mdui-spinner-colorful"></div>
         <p class="loading-text">Loading...</p>
-        
     </div>
-
     <script>
         function refreshPage() {
             location.href = location.href; // 跳转到当前页面  这个是刷新页面
         }
     </script>
-
-
-    <div class="mdui-appbar mdui-shadow-0 mdui-appbar-scroll-hide mdui-appbar-fixed">
+    <div class="mdui-appbar mdui-shadow-0 mdui-appbar-fixed">
         <div class="mdui-toolbar">
             <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}">
                 <i class="mdui-icon material-icons">menu</i>
@@ -83,232 +33,173 @@
             <a href="javascript:mdui.alert('随机壁纸要什么搜索^0^<br>',' ');" class="mdui-btn mdui-btn-icon">
                 <i class="mdui-icon material-icons">search</i>
             </a>
-            <a id="refresh-link" href="javascript:void(0);" onclick="refreshPage()" class="mdui-btn mdui-btn-icon">
-                <i class="mdui-icon material-icons">refresh</i>
+            <a id="refresh-link" href="javascript:void(0);" onclick="showCard()" class="mdui-btn mdui-btn-icon">         
+                <i class="mdui-icon material-icons">&#xe250;</i>
             </a>
-            <a href="javascript:mdui.alert('QQ:914933408<br>版本:1.0','关于');" class="mdui-btn mdui-btn-icon">
-
-                <i class="mdui-icon material-icons">more_vert</i>
+             <a id="refresh-link" href="javascript:void(0);" onclick="refreshPage()" class="mdui-btn mdui-btn-icon">           
+                <i class="mdui-icon material-icons">&#xe86a;</i>
             </a>
         </div>
     </div>
-
-
-
     <div class="mdui-drawer mdui-drawer-close " id="left-drawer">
         <br><br>
         <p class="h3">&nbsp;&nbsp;FATE WP</p>
         &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <span class="badge badge-light">v2023806</span>
         <ul class="mdui-list">
             <li class="mdui-list-item mdui-ripple">
-               
-<a onclick="showCustomModal('modal1')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">更新记录</a>
-            </li>
-            
-   
-
-            <li class="mdui-list-item mdui-ripple">
-            
-            <a onclick="showCustomModal('modal2')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">帮助文档</a>
+                <a onclick="showCustomModal('modal1')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">更新记录</a>
             </li>
             <li class="mdui-list-item mdui-ripple">
-                   <a onclick="showCustomModal('modal3')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">关于网站</a>
+                <a onclick="showCustomModal('modal2')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">帮助文档</a>
             </li>
-              <li class="mdui-list-item mdui-ripple">
-               <a onclick="showCard()" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">切换接口</a>
+            <li class="mdui-list-item mdui-ripple">
+                <a onclick="showCustomModal('modal3')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">关于网站</a>
             </li>
-    
-  <div id="modal1" class="card">
-  
-    
-  
-  <div style="width: 300px; height: 200px; overflow: auto;">
-<h5>更新记录</h5>
-    <p class="content">&nbsp;<span class="badge badge-light">v2023806</span><br>更新接口切换<br>更新弹窗卡片</p>
-    <p class="content">&nbsp;<span class="badge badge-light">v2023805</span><br>更新加载启动<br>优化网站代码</p>
-    <p class="content">&nbsp;<span class="badge badge-light">v2023804</span><br>网站框架构建</p>
-  
-</div>
-
-    
-  
-  
-    
-    
-  </div>
-
-  <div id="modal2" class="card">
-    
-     <div style="width: 300px; height: 200px; overflow: auto;">
-<h5>帮助文档</h5>
- 由于技术问题接口切换接规则:<br>
- 每次打开点击切换，从第1个接口开始切换<br>（本地保存，下次打开还是你<br>切换的那个接头，<br>只不过你再次切换要从第1个开始）
-  
-</div>
- 
-  </div>
-  
-  <div id="modal3" class="card">
-    
-     <div style="width: 300px; height: 200px; overflow: auto;">
-<h5>关于网站</h5>
-FATE WP初衷<br>是为了让你体验随机寻找壁纸的乐趣！
-  
-  
-</div>
- 
-  </div>
-
-  
-
-  <div id="card1" class="crd m-2">
-    
-  </div>
-  
-  <div id="card2" class="car m-2">
-    
-  </div>
-   <div id="card3" class="crd m-2">
-    
-  </div>
-     <div id="card4" class="crd m-2">
-    
-  </div>
-  
-  
-
-
-    
-  
+            <li class="mdui-list-item mdui-ripple">
+                <a onclick="showCard()" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">切换接口</a>
+            </li>
+            <div id="modal1" class="card">
+                <div style="width: 100%; height: 100%; overflow: auto;">
+                    <h5>更新记录</h5>
+                    <p class="content">&nbsp;<span class="badge badge-light">v2023807</span><br>优化卡片显示<br>优化底层代码</p>
+                    <p class="content">&nbsp;<span class="badge badge-light">v2023806</span><br>更新接口切换<br>更新弹窗卡片<br>更新界面布局</p>
+                    <p class="content">&nbsp;<span class="badge badge-light">v2023805</span><br>更新加载启动<br>优化网站代码</p>
+                    <p class="content">&nbsp;<span class="badge badge-light">v2023804</span><br>网站框架构建</p>
+                </div>
+            </div>
+            <div id="modal2" class="card">
+                <div style="width: 100%; height: 100%; overflow: auto;">
+                    <h5>帮助文档</h5>
+                    由于技术问题接口切换接规则:<br>
+                    每次打开点击切换，从第1个接口开始切换<br>（本地保存，下次打开还是你<br>切换的那个接头，<br>只不过你再次切换要从第1个开始）
+                </div>
+            </div>
+            <div id="modal3" class="card">
+                <div style="width: 100%; height: 100%; overflow: auto;">
+                    <h5>关于网站</h5>
+                    FATE WP初衷<br>是为了让你体验随机寻找壁纸的乐趣！
+                </div>
+            </div>
+            <div id="card1" class="crd m-2">
+            </div>
+            <div id="card2" class="car m-2">
+            </div>
+            <div id="card3" class="crd m-2">
+            </div>
+            <div id="card4" class="crd m-2">
+            </div>
             <br><br>
             <p class="h6">&nbsp;&nbsp;Other products</p>
             &nbsp;&nbsp;<a href="https://rndpic.pages.dev/" class="badge badge-light">RND PIC</a>&nbsp;&nbsp;<a href="https://dzyblog.pages.dev/" class="badge badge-light">DZY'S blog</a>
             &nbsp;&nbsp;<a href="https://jianxiang.pages.dev/" class="badge badge-light">简箱</a>&nbsp;&nbsp;<a href="https://ejjava.github.io/" class="badge badge-light">E简JAVA网</a>
-            
-  
-  
     </div>
-
-    
     <br>
     <div class="card">
-    
-   
-  
-</div>
-<!-- 内容区 -->
-
-   <div id="pic"></div>
-    <!-- 内容区 --> 
-
-    
+    </div>
+    <!-- 内容区 -->
+    <div id="pic"></div>
+    <!-- 内容区 -->
     </section>
-    
-    
-    
-    
-    
     <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
+    <script>
+        // 判断上次保存的页面并加载对应的卡片
+        var lastPage = localStorage.getItem("lastPage");
+        var picDiv = document.getElementById("pic");
 
-<script>
-    // 判断上次保存的页面并加载对应的卡片
-    var lastPage = localStorage.getItem("lastPage");
-    var picDiv = document.getElementById("pic");
+        if (lastPage === "2.html") {
+            picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
+        } else if (lastPage === "3.html") {
+            picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
+        } else if (lastPage === "4.html") {
+            picDiv.innerHTML = '<object type="text/html" data="4.html" width="100%" height="100%"></object>';
+        } else if (lastPage === "5.html") {
+            picDiv.innerHTML = '<object type="text/html" data="5.html" width="100%" height="100%"></object>';
+        } else {
+            picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
+        }
 
-    if (lastPage === "2.html") {
-      picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
-    } else if (lastPage === "3.html") {
-      picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
-    } else if (lastPage === "4.html") {
-      picDiv.innerHTML = '<object type="text/html" data="4.html" width="100%" height="100%"></object>';
-    } else if (lastPage === "5.html") {
-      picDiv.innerHTML = '<object type="text/html" data="5.html" width="100%" height="100%"></object>';
-    } else {
-      picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
-    }
+        // 切换按钮点击事件
+        function showCard() {
+            var card1 = document.getElementById("card1");
+            var card2 = document.getElementById("card2");
+            var card3 = document.getElementById("card3");
+            var card4 = document.getElementById("card4");
 
-  // 切换按钮点击事件
-  function showCard() {
-    var card1 = document.getElementById("card1");
-    var card2 = document.getElementById("card2");
-    var card3 = document.getElementById("card3");
-    var card4 = document.getElementById("card4");
+            if (card1.style.display === "block") {
+                card1.style.display = "none";
+                card2.style.display = "block";
+                card3.style.display = "none";
+                card4.style.display = "none";
 
-    if (card1.style.display === "block") {
-      card1.style.display = "none";
-      card2.style.display = "block";
-      card3.style.display = "none";
-      card4.style.display = "none";
+                picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
+                localStorage.setItem("lastPage", "2.html");
+            } else if (card2.style.display === "block") {
+                card1.style.display = "none";
+                card2.style.display = "none";
+                card3.style.display = "block";
+                card4.style.display = "none";
 
-      picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
-      localStorage.setItem("lastPage", "2.html");
-    } else if (card2.style.display === "block") {
-      card1.style.display = "none";
-      card2.style.display = "none";
-      card3.style.display = "block";
-      card4.style.display = "none";
+                picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
+                localStorage.setItem("lastPage", "3.html");
+            } else if (card3.style.display === "block") {
+                card1.style.display = "none";
+                card2.style.display = "none";
+                card3.style.display = "none";
+                card4.style.display = "block";
 
-      picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
-      localStorage.setItem("lastPage", "3.html");
-    } else if (card3.style.display === "block") {
-      card1.style.display = "none";
-      card2.style.display = "none";
-      card3.style.display = "none";
-      card4.style.display = "block";
+                picDiv.innerHTML = '<object type="text/html" data="4.html" width="100%" height="100%"></object>';
+                localStorage.setItem("lastPage", "4.html");
+            } else if (card4.style.display === "block") {
+                card1.style.display = "none";
+                card2.style.display = "none";
+                card3.style.display = "none";
+                card4.style.display = "none";
 
-      picDiv.innerHTML = '<object type="text/html" data="4.html" width="100%" height="100%"></object>';
-      localStorage.setItem("lastPage", "4.html");
-    } else if (card4.style.display === "block") {
-      card1.style.display = "none";
-      card2.style.display = "none";
-      card3.style.display = "none";
-      card4.style.display = "none";
+                picDiv.innerHTML = '<object type="text/html" data="5.html" width="100%" height="100%"></object>';
+                localStorage.setItem("lastPage", "5.html");
+            } else {
+                card1.style.display = "block";
+                card2.style.display = "none";
+                card3.style.display = "none";
+                card4.style.display = "none";
 
-      picDiv.innerHTML = '<object type="text/html" data="5.html" width="100%" height="100%"></object>';
-      localStorage.setItem("lastPage", "5.html");
-    } else {
-      card1.style.display = "block";
-      card2.style.display = "none";
-      card3.style.display = "none";
-      card4.style.display = "none";
-
-      picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
-      localStorage.setItem("lastPage", "1.html");
-    }
-  }
-</script>
-
+                picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
+                localStorage.setItem("lastPage", "1.html");
+            }
+        }
+    </script>
     <!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script> 
- 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script>
     <script src="./js/loading.js"></script>
-   
     <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
     <!-- RND PIC随机图片 -->
     <script src="https://rndpic.netlify.app/js/random.js"></script>
     <script src="https://rndpic.netlify.app/js/acquire.js"></script>
     <!-- RND PIC随机图片 -->
- <script>
-    function showCustomModal(modalId) {
-      // 隐藏所有卡片
-      var modals = document.getElementsByClassName("card");
-      for (var i = 0; i < modals.length; i++) {
-        modals[i].style.display = "none";
-      }
+    <script>
+        function showCustomModal(modalId) {
+            // 隐藏所有卡片
+            var modals = document.getElementsByClassName("card");
+            for (var i = 0; i < modals.length; i++) {
+                modals[i].style.display = "none";
+            }
 
-      // 显示指定的卡片
-      var modal = document.getElementById(modalId);
-      if (modal) {
-        modal.style.display = "block";
-      }
+            // 显示指定的卡片
+            var modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "block";
+            }
 
-      // 两秒后自动隐藏
-      setTimeout(function() {
-        modal.style.display = "none";
-      }, 2000);
-    }
-  </script>
+            // 两秒后自动隐藏
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 2000);
+        }
+    </script>     
+    <script src="./js/top.js"></script>
+    <!-- Cloudflare Pages Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics -->
 </body>
 
 </html>

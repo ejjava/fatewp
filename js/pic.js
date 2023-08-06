@@ -1,3 +1,7 @@
+
+
+
+
   window.onload = function () { // 一定要页面加载完成再调用
     waterFall.init('container', 'box');
   }
