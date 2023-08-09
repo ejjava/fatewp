@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="zh-CN">
   <head>
@@ -10,6 +11,32 @@
   <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> <!-- MDUI -->
   <link rel="stylesheet" href="./css/loading.css"> <!-- 圈 -->
   <link rel="stylesheet" href="./css/odinary.css"> <!-- 加载 -->    
+  <style>
+        /* 样式设置 */
+        .button {
+            padding: 10px;
+            margin: 5px;
+            background-color: #ccc;
+            cursor: pointer;
+        }
+
+        body, html {
+            border: none; /* 隐藏整个页面的边框 */
+        }
+
+        #pic {
+            width: 100%;
+            height: 100vh; /* 设置高度为视窗高度，实现全屏效果 */
+            margin-top: 10px;
+            display: none;
+        }
+
+        #pic iframe {
+            width: 100%;
+            height: 100%; /* 设置iframe的宽度和高度为100%，填充父容器 */
+            border: none; /* 隐藏iframe的边框 */
+        }
+    </style>
   <meta name="msvalidate.01" content="30AE833BAEFC95E50A2D7E844363D0CA" />
   </head>
 
@@ -46,9 +73,10 @@ function refreshPage() {
     <div class="mdui-drawer mdui-drawer-close " id="left-drawer">
       <br><br>
       <p class="h3">&nbsp;&nbsp;FATE WP</p>
-      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <span class="badge badge-light">v2023806</span>
+      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <span class="badge badge-light">v2023809</span>
       <ul class="mdui-list">
         <li class="mdui-list-item mdui-ripple">
+        
           <a onclick="showCustomModal('modal1')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">更新记录</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
@@ -58,12 +86,12 @@ function refreshPage() {
           <a onclick="showCustomModal('modal3')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">关于网站</a>
         </li>
         <li class="mdui-list-item mdui-ripple">
-          <a onclick="showCard()" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">切换接口</a>
+          <a onclick="showCustomModal('modal4')" class="button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">切换接口</a>
         </li>
         <div id="modal1" class="card">
           <div style="width: 100%; height: 100%; overflow: auto;">
             <h5>更新记录</h5>
-            <p class="content">&nbsp;<span class="badge badge-light">v2023807</span><br>优化卡片显示<br>优化底层代码</p>
+            <p class="content">&nbsp;<span class="badge badge-light">v2023809</span><br>优化卡片显示<br>优化底层代码</p><br>优化底层代码</p>重构切换逻辑
             <p class="content">&nbsp;<span class="badge badge-light">v2023806</span><br>更新接口切换<br>更新弹窗卡片<br>更新界面布局</p>
             <p class="content">&nbsp;<span class="badge badge-light">v2023805</span><br>更新加载启动<br>优化网站代码</p>
             <p class="content">&nbsp;<span class="badge badge-light">v2023804</span><br>网站框架构建</p>
@@ -72,16 +100,29 @@ function refreshPage() {
         <div id="modal2" class="card">
           <div style="width: 100%; height: 100%; overflow: auto;">
             <h5>帮助文档</h5>
-            由于技术问题接口切换接规则:<br>
-            每次打开点击切换，从第1个接口开始切换<br>（本地保存，下次打开还是你<br>切换的那个接头，<br>只不过你再次切换要从第1个开始）
+            <span class="badge badge-secondary">2023807</span><br>
+            接口切换接规则:<br>
+            选择切换接口即可切换<br>（本地保存，下次打开还是<br>你选的接口)
+            <br>目前官方接口有问题（一号）
           </div>
         </div>
         <div id="modal3" class="card">
           <div style="width: 100%; height: 100%; overflow: auto;">
             <h5>关于网站</h5>
+             <span class="badge badge-secondary">2023807</span><br>
             FATE WP初衷<br>是为了让你体验随机寻找壁纸的乐趣！
           </div>
+        </div> <div id="modal4" class="card">
+        <div style="width: 100%; height: 100%; overflow: auto;">
+            <h5>切换接口</h5>
+              <a href="#" class="badge badge-light m-2" onclick="showPage('1.html')">接口①</a>
+                  <br>
+          <a href="#" class="badge badge-light m-2" onclick="showPage('2.html')">接口②</a><br>
+          <a href="#" class="badge badge-light m-2" onclick="showPage('3.html')">接口③</a><br>
+          <a href="#" class="badge badge-light m-2" onclick="showPage('4.html')">接口④</a><br>
+          <a href="#" class="badge badge-light m-2" onclick="showPage('5.html')">接口⑤</a>
         </div>
+    </div>
         <div id="card1" class="crd m-2">
         </div>
         <div id="card2" class="car m-2">
@@ -103,91 +144,23 @@ function refreshPage() {
     <!-- 内容区 -->
     </section>
     <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
-<script>
-// 判断上次保存的页面并加载对应的卡片
-var lastPage = localStorage.getItem("lastPage");
-var picDiv = document.getElementById("pic");
+ <script>
+        // 获取本地存储的页面地址，默认为1.html
+        var page = localStorage.getItem('currentPage') || '1.html';
 
-if (lastPage === "2.html")
-{
-    picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
-}
-else if (lastPage === "3.html")
-{
-    picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
-}
-else if (lastPage === "4.html")
-{
-    picDiv.innerHTML = '<object type="text/html" data="4.html" width="100%" height="100%"></object>';
-}
-else if (lastPage === "5.html")
-{
-    picDiv.innerHTML = '<object type="text/html" data="5.html" width="100%" height="100%"></object>';
-}
-else
-{
-    picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
-}
+        // 显示当前页面
+        showPage(page);
 
-// 切换按钮点击事件
-function showCard() {
-    var card1 = document.getElementById("card1");
-    var card2 = document.getElementById("card2");
-    var card3 = document.getElementById("card3");
-    var card4 = document.getElementById("card4");
+        // 点击按钮时，保存选中的页面，并显示对应页面
+        function showPage(page) {
+            // 保存选中的页面到本地存储
+            localStorage.setItem('currentPage', page);
 
-    if (card1.style.display === "block")
-    {
-        card1.style.display = "none";
-        card2.style.display = "block";
-        card3.style.display = "none";
-        card4.style.display = "none";
-
-        picDiv.innerHTML = '<object type="text/html" data="2.html" width="100%" height="100%"></object>';
-        localStorage.setItem("lastPage", "2.html");
-    }
-    else if (card2.style.display === "block")
-    {
-        card1.style.display = "none";
-        card2.style.display = "none";
-        card3.style.display = "block";
-        card4.style.display = "none";
-
-        picDiv.innerHTML = '<object type="text/html" data="3.html" width="100%" height="100%"></object>';
-        localStorage.setItem("lastPage", "3.html");
-    }
-    else if (card3.style.display === "block")
-    {
-        card1.style.display = "none";
-        card2.style.display = "none";
-        card3.style.display = "none";
-        card4.style.display = "block";
-
-        picDiv.innerHTML = '<object type="text/html" data="4.html" width="100%" height="100%"></object>';
-        localStorage.setItem("lastPage", "4.html");
-    }
-    else if (card4.style.display === "block")
-    {
-        card1.style.display = "none";
-        card2.style.display = "none";
-        card3.style.display = "none";
-        card4.style.display = "none";
-
-        picDiv.innerHTML = '<object type="text/html" data="5.html" width="100%" height="100%"></object>';
-        localStorage.setItem("lastPage", "5.html");
-    }
-    else
-    {
-        card1.style.display = "block";
-        card2.style.display = "none";
-        card3.style.display = "none";
-        card4.style.display = "none";
-
-        picDiv.innerHTML = '<object type="text/html" data="1.html" width="100%" height="100%"></object>';
-        localStorage.setItem("lastPage", "1.html");
-    }
-}
-</script>
+            // 显示对应的页面
+            document.getElementById('pic').innerHTML = '<iframe src="' + page + '" style="width: 100%; height: 100%;"></iframe>';
+            document.getElementById('pic').style.display = 'block';
+        }
+    </script>
     <!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
     <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-7ymO4nGrkm372HoSbq1OY2DP4pEZnMiA+E0F3zPr+JQQtQ82gQ1HPY3QIVtztVua" crossorigin="anonymous"></script>
@@ -223,6 +196,6 @@ function showCustomModal(modalId) {
     <!-- Cloudflare Pages Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics -->
     <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- End Cloudflare Web Analytics -->
-  </body>
+  <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics --></body>
 
 </html>
