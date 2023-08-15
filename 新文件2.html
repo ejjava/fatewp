@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <title>自动跳转页面</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <style>
+        /* 添加适应性样式 */
+
+        /* 对于大屏幕设备（如电脑），隐藏移动设备相关内容 */
+        @media (min-width: 768px) {
+            /* 在这里放置需要隐藏的样式或选择器 */
+        }
+    </style>
+</head>
+
+<body>
+    <h1>欢迎访问我们的网站！</h1>
+
+    <!-- 在这里添加适合移动设备的内容 -->
+
+    <script>
+        // 检查设备类型以判断是否是移动设备
+        function checkDevice() {
+            var isMobile = window.matchMedia("only screen and (max-width: 767px)").matches;
+
+            if (isMobile) {
+                // 如果是移动设备，则不进行页面跳转
+                return;
+            }
+
+            // 如果是电脑设备，则进行页面跳转
+            window.location.href = "desktop.html"; // 替换为你要跳转的页面地址
+        }
+
+        // 在页面加载完成后运行检查设备函数
+        window.addEventListener("load", checkDevice);
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>逐张加载图片</title>
+  <style>
+    .image-container {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 400px;
+    }
+    img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+  </style>
+</head>
+<body>
+  <div class="image-container">
+    <img id="image" src="" alt="加载中...">
+  </div>
+
+  <script>
+    var apiUrl = 'https://t.mwm.moe/ycy'; // 替换为实际的接口地址
+
+    var imageElement = document.getElementById('image');
+
+    function loadImage(url) {
+      if (url) {
+        fetch(url)
+          .then(response => response.blob())
+          .then(blob => {
+            var imageUrl = URL.createObjectURL(blob);
+            imageElement.src = imageUrl;
+            imageElement.alt = '加载完成';
+          })
+          .catch(error => {
+            console.error('获取图片失败:', error);
+            imageElement.alt = '加载失败';
+          });
+      }
+    }
+
+    loadImage(apiUrl);
+  </script>
+</body>
+</html>
