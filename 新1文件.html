@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>无网络连接</title>
+    <style>
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-family: Arial, sans-serif;
+        }
+
+        .offline-message {
+            padding: 20px;
+            background-color: #f2f2f2;
+            border-radius: 10px;
+            text-align: center;
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function() {
+            var offlineMessage = document.getElementById('offline-message');
+
+            function toggleOfflineMessage() {
+                if (!navigator.onLine) {
+                    offlineMessage.style.display = 'block';
+                } else {
+                    offlineMessage.style.display = 'none';
+                }
+            }
+
+            toggleOfflineMessage();
+            setInterval(toggleOfflineMessage, 2000); // 每隔2秒切换一次离线提示
+
+            // 监听在线状态变化
+            window.addEventListener('online', toggleOfflineMessage);
+            window.addEventListener('offline', toggleOfflineMessage);
+        });
+    </script>
+</head>
+<body>
+    <div class="offline-message" id="offline-message">
+        <h1>当前你没有网络</h1>
+    </div>
+</body>
+</html>
