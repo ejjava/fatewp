@@ -1,19 +1,20 @@
 <!doctype html>
 <html lang="zh-CN">
-  <head>
-  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">     
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> <!-- Bootstrap 的 CSS 文件 -->
-  <title>FATE WP:一款随机壁纸网站</title>
-  <meta name="keywords" content=图片,二次元,FATE WP,自制网站,壁纸,随机壁纸,随机图片>
-  <meta name="description" content="DZY's Blog:随心所欲的分享！">
-  <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> <!-- MDUI -->
-  <link rel="stylesheet" href="./css/loading.css"> <!-- 圈 -->
-  <link rel="stylesheet" href="./css/odinary.css"> <!-- 加载 -->    
-    <link rel="stylesheet" href="./css/Window.css"> <!-- 弹窗 -->    
-  <style>
-  #notification {
-  /* 判断网络的^0^ */
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css" integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous"> <!-- Bootstrap 的 CSS 文件 -->
+    <title>FATE WP:一款随机壁纸网站</title>
+    <meta name="keywords" content=图片,二次元,FATE WP,自制网站,壁纸,随机壁纸,随机图片>
+    <meta name="description" content="DZY's Blog:随心所欲的分享！">
+    <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" /> <!-- MDUI -->
+    <link rel="stylesheet" href="./css/loading.css"> <!-- 圈 -->
+    <link rel="stylesheet" href="./css/odinary.css"> <!-- 加载 -->
+    <link rel="stylesheet" href="./css/Window.css"> <!-- 弹窗 -->
+    <style>
+        #notification {
+            /* 判断网络的^0^ */
             position: fixed;
             top: -100px;
             left: 50%;
@@ -24,13 +25,16 @@
             border-radius: 25px;
             transition: top 1s ease-in-out;
         }
-   
-  
-  .mdui-drawer {
-    /*  border-radius: 10px;  设置圆角的大小 */
-      border-top-right-radius: 25px; /* 设置右上角圆角 */
-      border-bottom-right-radius: 25px; /* 设置右下角圆角 */
-    }
+
+
+        .mdui-drawer {
+            /*  border-radius: 10px;  设置圆角的大小 */
+            border-top-right-radius: 25px;
+            /* 设置右上角圆角 */
+            border-bottom-right-radius: 25px;
+            /* 设置右下角圆角 */
+        }
+
         /* 样式设置 */
         .button {
             padding: 10px;
@@ -39,87 +43,96 @@
             cursor: pointer;
         }
 
-        body, html {
-            border: none; /* 隐藏整个页面的边框 */
+        body,
+        html {
+            border: none;
+            /* 隐藏整个页面的边框 */
         }
 
         #pic {
             width: 100%;
-            height: 100vh; /* 设置高度为视窗高度，实现全屏效果 */
+            height: 100vh;
+            /* 设置高度为视窗高度，实现全屏效果 */
             margin-top: 10px;
             display: none;
         }
 
         #pic iframe {
             width: 100%;
-            height: 100%; /* 设置iframe的宽度和高度为100%，填充父容器 */
-            border: none; /* 隐藏iframe的边框 */
+            height: 100%;
+            /* 设置iframe的宽度和高度为100%，填充父容器 */
+            border: none;
+            /* 隐藏iframe的边框 */
         }
     </style>
-  <meta name="msvalidate.01" content="30AE833BAEFC95E50A2D7E844363D0CA" />
-  </head>
+    <meta name="msvalidate.01" content="30AE833BAEFC95E50A2D7E844363D0CA" />
+</head>
 
-  <body class="loading padding-top">
-  <div id="notification"></div><!-- 判断网络 -->
+<body class="loading padding-top">
+    <div id="notification"></div><!-- 判断网络 -->
     <div id="loading-spinner">
-      <p class="additional-text">FATE WP</p> <!-- 在转圈圈上方添加的额外文本 -->
-      <div class="spinner不用这个"></div>
-      <div class="mdui-spinner mdui-spinner-colorful"></div>
-      <p class="loading-text">Loading...</p>
+        <p class="additional-text">FATE WP</p> <!-- 在转圈圈上方添加的额外文本 -->
+        <div class="spinner不用这个"></div>
+        <div class="mdui-spinner mdui-spinner-colorful"></div>
+        <p class="loading-text">Loading...</p>
     </div>
-<script>
-function refreshPage() {
-    location.href = location.href; // 跳转到当前页面  这个是刷新页面
-}
-</script>
+    <script>
+        function refreshPage() {
+            location.href = location.href; // 跳转到当前页面  这个是刷新页面
+        }
+    </script>
     <div class="mdui-appbar mdui-shadow-0 mdui-appbar-fixed">
-      <div class="mdui-toolbar">
-        <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}">
-          <i class="mdui-icon material-icons">menu</i>
-        </a>
-        <a href="javascript:;" class="mdui-typo-title">FATE WP</a>
-        <div class="mdui-toolbar-spacer"></div>
-       <a href="javascript:mdui.alert('随机壁纸要什么搜索^0^<br>',' ');" class="mdui-dialog-content mdui-btn mdui-btn-icon rounded-dialog">
-  <i class="mdui-icon material-icons">search</i>
-</a>
-        <a id="refresh-link" href="javascript:void(0);" onclick="showCard()" class="mdui-btn mdui-btn-icon">         
-          <i class="mdui-icon material-icons">&#xe250;</i>
-        </a>
-        <a id="refresh-link" href="javascript:void(0);" onclick="refreshPage()" class="mdui-btn mdui-btn-icon">           
-          <i class="mdui-icon material-icons">&#xe86a;</i>
-        </a>
-      </div>
+        <div class="mdui-toolbar">
+            <a href="javascript:;" class="mdui-btn mdui-btn-icon" mdui-drawer="{target: '#left-drawer'}">
+                <i class="mdui-icon material-icons">menu</i>
+            </a>
+            <a href="javascript:;" class="mdui-typo-title">FATE WP</a>
+            <div class="mdui-toolbar-spacer"></div>
+            <a href="javascript:mdui.alert('随机壁纸要什么搜索^0^<br>',' ');" class="mdui-dialog-content mdui-btn mdui-btn-icon rounded-dialog">
+                <i class="mdui-icon material-icons">search</i>
+            </a>
+            <a id="refresh-link" href="javascript:void(0);" onclick="showCard()" class="mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons">&#xe250;</i>
+            </a>
+            <a id="refresh-link" href="javascript:void(0);" onclick="refreshPage()" class="mdui-btn mdui-btn-icon">
+                <i class="mdui-icon material-icons">&#xe86a;</i>
+            </a>
+        </div>
     </div>
     <div class="border-radius mdui-drawer mdui-drawer-close " id="left-drawer">
-      <br><br>
-      <p class="h3">&nbsp;&nbsp;FATE WP</p>
-      &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <span class="badge badge-light">v2023821</span>
-      <ul class="mdui-list">
-        <li class="mdui-list-item mdui-ripple">
-        
-          <a onclick="showCustomModal('modal1')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">更新记录</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-          <a onclick="showCustomModal('modal2')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">帮助文档</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-          <a onclick="showCustomModal('modal3')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">关于网站</a>
-        </li>
-        <li class="mdui-list-item mdui-ripple">
-          <a onclick="showCustomModal('modal4')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">切换接口</a>
-        </li>     
-        <div id="card1" class="crd m-2">
-        </div>
-        <div id="card2" class="car m-2">
-        </div>
-        <div id="card3" class="crd m-2">
-        </div>
-        <div id="card4" class="crd m-2">
-        </div>
         <br><br>
-        <p class="h6">&nbsp;&nbsp;Other products</p>
-        &nbsp;&nbsp;<a href="https://rndpic.pages.dev/" class="badge badge-light">RND PIC</a>&nbsp;&nbsp;<a href="https://dzyblog.pages.dev/" class="badge badge-light">DZY'S blog</a>
-        &nbsp;&nbsp;<a href="https://jianxiang.pages.dev/" class="badge badge-light">简箱</a>&nbsp;&nbsp;<a href="https://ejjava.github.io/" class="badge badge-light">E简JAVA网</a>   
+        <p class="h3">&nbsp;&nbsp;FATE WP</p>
+        &nbsp;&nbsp;&nbsp;&nbsp; &nbsp; <span class="badge badge-light">v2023821</span>
+        <ul class="mdui-list">
+            <li class="mdui-list-item mdui-ripple">
+
+                <a onclick="showCustomModal('modal1')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">更新记录</a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <a onclick="showCustomModal('modal2')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">帮助文档</a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <a onclick="showCustomModal('modal3')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">关于网站</a>
+            </li>
+            <li class="mdui-list-item mdui-ripple">
+                <a onclick="showCustomModal('modal4')" class="open-dialog-btn button btn p-2 m-2 w-100 p-2 btn btn-outline-dark badge badge-info bg-light">切换接口</a>
+            </li>
+            <div id="card1" class="crd m-2">
+            </div>
+            <div id="card2" class="car m-2">
+            </div>
+            <div id="card3" class="crd m-2">
+            </div>
+            <div id="card4" class="crd m-2">
+            </div>
+            <br><br>
+            <p class="h6">&nbsp;&nbsp;Other products</p>
+            &nbsp;&nbsp;<a href="https://rndpic.pages.dev/" class="badge badge-light">RND PIC</a>&nbsp;&nbsp;<a href="https://dzyblog.pages.dev/" class="badge badge-light">DZY'S blog</a>
+            &nbsp;&nbsp;<a href="https://jianxiang.pages.dev/" class="badge badge-light">简箱</a>&nbsp;&nbsp;<a href="https://ejjava.github.io/" class="badge badge-light">E简JAVA网</a>
+            <br><br>
+            <p class="h6">&nbsp;&nbsp;Friend</p>
+            &nbsp;&nbsp;<a href="https://root-a.top/" class="badge badge-light">RandomPhoto</a>
+                &nbsp;&nbsp;<p>我才不会告诉你这个网站好好用，哼^0^</p>
     </div>
     <br>
     <div class="card">
@@ -127,12 +140,12 @@ function refreshPage() {
     <!-- 内容区 -->
     <div id="pic"></div>
     <!-- 内容区 -->
-    
+
     <div class="dialog-overlay">
         <div class="dialog-box">
-        <br><br>
-        <h4 class="text-center">更新记录</h4>
-        <br>
+            <br><br>
+            <h4 class="text-center">更新记录</h4>
+            <br>
             <p class="content">&nbsp;<span class="badge badge-light">v2023821</span><br>删除侧滑栏卡片，改为弹窗<br>侧滑栏按钮改为圆角<br>加入网络提醒</p>
             <p class="content">&nbsp;<span class="badge badge-light">v2023816</span><br>侧滑栏圆角<br>卡片隐藏提升至5s<br>开通单图片接口<br>从而节约流量<br>和提示访问速度</p>
             <p class="content">&nbsp;<span class="badge badge-light">v2023809</span><br>优化卡片显示<br>优化底层代码</p><br>优化底层代码</p>重构切换逻辑
@@ -142,9 +155,9 @@ function refreshPage() {
             <!-- 更新记录 内容 -->
         </div>
     </div>
-    
-   
-    
+
+
+
     <div class="dialog-overlay">
         <div class="dialog-box">
             <!-- 帮助-->
@@ -157,42 +170,42 @@ function refreshPage() {
             <br>目前官方接口有问题（一号）
         </div>
     </div>
-    
-      <div class="dialog-overlay">
+
+    <div class="dialog-overlay">
         <div class="dialog-box">
             <!-- 帮助-->
             <br><br>
             <h4 class="text-center">关于网站</h4>
             <br>
-             <span class="badge badge-secondary">2023807</span><br>
+            <span class="badge badge-secondary">2023807</span><br>
             FATE WP初衷<br>是为了让你体验随机寻找壁纸的乐趣！
         </div>
     </div>
-    
-     <div class="dialog-overlay">
+
+    <div class="dialog-overlay">
         <div class="dialog-box">
             <!-- 接口切换内容 -->
-             <h4 class="text-center">切换接口</h4>
-              <a href="#" class="badge badge-light m-2" onclick="showPage('1.html')">接口①(多)</a>
-                <a href="#" class="badge badge-light m-2" onclick="showPage('1-1.html')">接口①(单)</a>
-              
-                  <br>
-          <a href="#" class="badge badge-light m-2" onclick="showPage('2.html')">接口②(多)</a>
-           <a href="#" class="badge badge-light m-2" onclick="showPage('2-2.html')">接口②(单)</a>
-          <br>
-          <a href="#" class="badge badge-light m-2" onclick="showPage('3.html')">接口③(多)</a>
-          <a href="#" class="badge badge-light m-2" onclick="showPage('3-3.html')">接口③(单)</a>
-          <br>
-          <a href="#" class="badge badge-light m-2" onclick="showPage('4.html')">接口④(多)</a>
-          <a href="#" class="badge badge-light m-2" onclick="showPage('4-4.html')">接口④(单)</a>
-          <br>
-          <a href="#" class="badge badge-light m-2" onclick="showPage('5.html')">接口⑤(多)</a>
-           <a href="#" class="badge badge-light m-2" onclick="showPage('5-5.html')">接口⑤(单)</a>
+            <h4 class="text-center">切换接口</h4>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('1.html')">接口①(多)</a>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('1-1.html')">接口①(单)</a>
+
+            <br>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('2.html')">接口②(多)</a>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('2-2.html')">接口②(单)</a>
+            <br>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('3.html')">接口③(多)</a>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('3-3.html')">接口③(单)</a>
+            <br>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('4.html')">接口④(多)</a>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('4-4.html')">接口④(单)</a>
+            <br>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('5.html')">接口⑤(多)</a>
+            <a href="#" class="badge badge-light m-2" onclick="showPage('5-5.html')">接口⑤(单)</a>
         </div>
     </div>
     </section>
     <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
- <script>
+    <script>
         // 获取本地存储的页面地址，默认为1.html
         var page = localStorage.getItem('currentPage') || '1.html';
 
@@ -218,30 +231,29 @@ function refreshPage() {
     <script src="https://rndpic.netlify.app/js/random.js"></script>
     <script src="https://rndpic.netlify.app/js/acquire.js"></script>
     <!-- RND PIC随机图片 -->
-<script>
-function showCustomModal(modalId) {
-    // 隐藏所有卡片
-    var modals = document.getElementsByClassName("card");
-    for (var i = 0; i < modals.length; i++)
-    {
-        modals[i].style.display = "none";
-    }
+    <script>
+        function showCustomModal(modalId) {
+            // 隐藏所有卡片
+            var modals = document.getElementsByClassName("card");
+            for (var i = 0; i < modals.length; i++) {
+                modals[i].style.display = "none";
+            }
 
-    // 显示指定的卡片
-    var modal = document.getElementById(modalId);
-    if (modal)
-    {
-        modal.style.display = "block";
-    }
+            // 显示指定的卡片
+            var modal = document.getElementById(modalId);
+            if (modal) {
+                modal.style.display = "block";
+            }
 
-    // 两秒后自动隐藏
-    setTimeout(function() {
-                   modal.style.display = "none";
-               }, 5000);
-}
-</script>
+            // 两秒后自动隐藏
+            setTimeout(function() {
+                modal.style.display = "none";
+            }, 5000);
+        }
+    </script>
 
- <script>/* 判断网络^0^ */
+    <script>
+        /* 判断网络^0^ */
         function checkConnectionType() {
             if (navigator.connection && navigator.connection.type) {
                 var connectionType = navigator.connection.type;
@@ -258,7 +270,7 @@ function showCustomModal(modalId) {
 
                 notificationElement.textContent = notificationText;
                 notificationElement.style.top = '50px';
-                setTimeout(function () {
+                setTimeout(function() {
                     notificationElement.style.top = '-100px';
                 }, 5000);
             } else {
@@ -267,16 +279,21 @@ function showCustomModal(modalId) {
         }
 
         // 自动检查连接方式
-        window.addEventListener('load', function () {
+        window.addEventListener('load', function() {
             setTimeout(checkConnectionType, 1000); // 延迟1秒后进行检查
         });
     </script>
-    
-    <script src="./js/Window.js"></script>    
+
+    <script src="./js/Window.js"></script>
     <script src="./js/top.js"></script>
     <!-- Cloudflare Pages Analytics -->
     <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics -->
-    <!-- Cloudflare Web Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- End Cloudflare Web Analytics -->
-  <!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics --><script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics --></body>
+    <!-- Cloudflare Web Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- End Cloudflare Web Analytics -->
+    <!-- Cloudflare Pages Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics --><!-- Cloudflare Pages Analytics -->
+    <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "8e8625a23f2c49f8a2dc36c8cc4c09fb"}'></script><!-- Cloudflare Pages Analytics -->
+</body>
 
 </html>
