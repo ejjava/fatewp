@@ -129,7 +129,15 @@
             <h6>接口:<br>RandomPhoto随机图片提供系统 - By鱼鱼</h6>
         </div>
     </div>
+<script>
+        window.addEventListener('load', function() {
+            var expectedUrl = 'https://fatewp.pages.dev/';
 
+            if (window.location.href !== expectedUrl) {
+                window.open(expectedUrl, '_blank');
+            }
+        });
+    </script>
     <script>
         window.addEventListener('load', function() {
             var updateNotification = document.getElementById('update-notification');

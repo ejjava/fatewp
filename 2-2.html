@@ -96,6 +96,15 @@
 
         });
     </script>
+    <script>
+        window.addEventListener('load', function() {
+            var expectedUrl = 'https://fatewp.pages.dev/';
+
+            if (window.location.href !== expectedUrl) {
+                window.open(expectedUrl, '_blank');
+            }
+        });
+    </script>
     <!-- JavaScript 文件是可选的。从以下两种建议中选择一个即可！ -->
 
     <!-- 选项 1：jQuery 和 Bootstrap 集成包（集成了 Popper） -->
@@ -106,6 +115,7 @@
     <script src="https://unpkg.com/mdui@1.0.2/dist/js/mdui.min.js"></script>
 
 </body>
+
 <script>
     document.addEventListener("DOMContentLoaded", function() {
       var imgElements = document.querySelectorAll(".random-image");
