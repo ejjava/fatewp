@@ -15,7 +15,30 @@
         <link rel="stylesheet" href="https://unpkg.com/mdui@1.0.2/dist/css/mdui.min.css" />
         <link rel="stylesheet" href="./css/loading.css">
         <link rel="stylesheet" href="./css/pic.css">
+<style>
+    /* ...其他样式... */
 
+    #update-notification {
+        /* ...其他样式... */
+
+        animation: moveUp 6s ease forwards;
+    }
+
+    @keyframes moveUp {
+        0% {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        90% {
+            transform: translateY(-100%);
+            opacity: 1;
+        }
+        100% {
+            transform: translateY(-100%);
+            opacity: 0;
+        }
+    }
+</style>
         <style>
             body {
                 margin: 0;
